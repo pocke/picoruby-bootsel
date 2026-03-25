@@ -1,40 +1,40 @@
 # picoruby-bootsel Example
 
-BOOTSEL ボタンを押している間、オンボード LED が点灯するサンプルプログラム。
+A sample program that lights the onboard LED while the BOOTSEL button is pressed.
 
-## 前提条件
+## Prerequisites
 
 - arm-none-eabi-gcc
-- cmake (3.22 以上)
-- Ruby (3.0 以上) + Bundler
+- cmake (3.22+)
+- Ruby (3.0+) + Bundler
 
-## ビルド
+## Build
 
 ```sh
 ./build.sh
 ```
 
-R2P2 のクローン、依存ライブラリのセットアップ、ファームウェアのビルドが自動で行われる。
-ビルドが成功すると `.uf2` ファイルのパスが表示される。
+This script automatically clones R2P2, sets up dependencies, and builds the firmware.
+On success, the path to the `.uf2` file is printed.
 
-## Pico への書き込み
+## Flashing
 
-1. Pico の BOOTSEL ボタンを押しながら USB ケーブルを接続する
-2. マスストレージデバイスとしてマウントされる
-3. 表示されたパスの `.uf2` ファイルをマウントされたドライブにコピーする
+1. Hold the BOOTSEL button on the Pico while connecting the USB cable
+2. The Pico mounts as a mass storage device
+3. Copy the `.uf2` file to the mounted drive
 
-## サンプルプログラムの実行
+## Running
 
-ビルド時に `bootsel_led` コマンドがファームウェアに組み込まれる。
-シリアルコンソールで接続し、R2P2 のシェルから `bootsel_led` と入力すると実行される。
+The `bootsel_led` command is embedded in the firmware at build time.
+Connect via serial console and type `bootsel_led` in the R2P2 shell.
 
 ```sh
 screen /dev/ttyACM0 115200
 ```
 
-BOOTSEL ボタンを押すと LED が点灯し、離すと消灯する。
+The LED lights up while the BOOTSEL button is pressed, and turns off when released.
 
-### 起動時に自動実行する場合
+### Auto-run at boot
 
-USB マスストレージ上の `/etc/init.d/r2p2` に `app.rb` の内容をコピーすると、
-Pico の起動時に自動で実行される（起動中に `s` キーを押すとスキップ可能）。
+Copy the contents of `app.rb` to `/etc/init.d/r2p2` on the USB mass storage drive.
+The script will run automatically on boot (press `s` during startup to skip).
