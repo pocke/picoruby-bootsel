@@ -41,5 +41,5 @@ MRuby::CrossBuild.new("r2p2-bootsel-pico") do |conf|
   conf.gembox "peripheral_utils"
   conf.gem core: 'picoruby-keyboard'
 
-  conf.gem github: 'pocke/picoruby-bootsel'
+  conf.gem File.expand_path('../../..', __FILE__)
 end
