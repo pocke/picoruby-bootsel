@@ -99,6 +99,17 @@ install_example() {
   fi
 }
 
+clean() {
+  echo "==> Cleaning build artifacts..."
+  rm -rf "$R2P2_DIR/lib/picoruby/build/$BUILD_CONFIG_NAME"
+  rm -rf "$R2P2_DIR/$BUILD_DIR"
+  rm -f "$R2P2_DIR/lib/picoruby/mrbgems/picoruby-shell/shell_executables/bootsel_led.rb"
+}
+
+if [ "${1:-}" = "--clean" ]; then
+  clean
+fi
+
 clone_r2p2
 link_gem
 install_example
