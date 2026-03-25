@@ -1,6 +1,9 @@
-#include "pico/bootrom.h"
+#include <stdbool.h>
 
 #include "../../include/bootsel.h"
+
+/* Defined in bootsel_button.c (extracted from TinyUSB BSP) */
+bool get_bootsel_button(void);
 
 bool
 Bootsel_pressed(void)
