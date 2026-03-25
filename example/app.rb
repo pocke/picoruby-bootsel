@@ -1,3 +1,5 @@
+require "bootsel"
+
 led = GPIO.new(25, GPIO::OUT)
 
 while true
