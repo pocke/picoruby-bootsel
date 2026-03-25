@@ -1,10 +1,11 @@
 #include "mrubyc.h"
-#include "pico/bootrom.h"
+
+#include "../include/bootsel.h"
 
 static void
 c_bootsel_pressed_q(mrbc_vm *vm, mrbc_value v[], int argc)
 {
-  if (get_bootsel_button()) {
+  if (Bootsel_pressed()) {
     SET_TRUE_RETURN();
   } else {
     SET_FALSE_RETURN();
