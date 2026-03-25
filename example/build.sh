@@ -85,8 +85,23 @@ link_gem() {
   fi
 }
 
+install_example() {
+  local SHELL_EXE_DIR="$R2P2_DIR/lib/picoruby/mrbgems/picoruby-shell/shell_executables"
+  local PATH_TXT="$SHELL_EXE_DIR/_path.txt"
+  local EXE_NAME="bootsel_led"
+
+  if [ ! -f "$SHELL_EXE_DIR/$EXE_NAME.rb" ]; then
+    echo "==> Installing $EXE_NAME into shell_executables..."
+    cp "$EXAMPLE_DIR/app.rb" "$SHELL_EXE_DIR/$EXE_NAME.rb"
+    if ! grep -q "$EXE_NAME" "$PATH_TXT"; then
+      echo "/bin/$EXE_NAME" >> "$PATH_TXT"
+    fi
+  fi
+}
+
 clone_r2p2
 link_gem
+install_example
 build_libmruby
 build_firmware
 
